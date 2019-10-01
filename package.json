@@ -3,6 +3,8 @@
   "version": "0.1.0",
   "private": false,
   "main": "lib/index.js",
+  "license": "MIT",
+  "author": "Fela Maslen",
   "dependencies": {
     "date-fns": "^2.4.1",
     "just-compose": "^1.1.0",
