@@ -1,18 +1,18 @@
 {
   "name": "react-good-calendar",
   "version": "0.1.0",
-  "private": true,
+  "private": false,
+  "main": "lib/index.js",
   "dependencies": {
     "date-fns": "^2.4.1",
     "just-compose": "^1.1.0",
     "react": "^16.10.1",
     "react-dom": "^16.10.1",
-    "react-scripts": "3.1.2",
     "styled-components": "^4.4.0"
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "BABEL_ENV=production rollup -c",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
@@ -30,5 +30,15 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "react-scripts": "3.1.2",
+    "rollup": "^1.22.0",
+    "rollup-plugin-babel": "^4.3.3",
+    "rollup-plugin-commonjs": "^10.1.0",
+    "rollup-plugin-node-resolve": "^5.2.0",
+    "rollup-plugin-peer-deps-external": "^2.2.0",
+    "rollup-plugin-postcss": "^2.0.3",
+    "rollup-plugin-url": "^2.2.2"
   }
 }
