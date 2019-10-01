@@ -32,13 +32,13 @@ export default function ViewMonth({ }) {
   const firstDate = useMemo(() => getFirstDate(date), [date]);
   const lastDate = useMemo(() => getLastDate(date), [date]);
 
-  const numWeeks = useMemo(() => differenceInWeeks(lastDate, firstDate), [lastDate, firstDate]);
+  const numWeeks = useMemo(() => 1 + differenceInWeeks(lastDate, firstDate), [lastDate, firstDate]);
 
   const weeks = useMemo(() => (
     new Array(numWeeks).fill(0)
       .map((item, index) => addWeeks(firstDate, index))
-      .map(week => ({ week, key: date.toISOString() }))
-  ), [numWeeks]);
+      .map(week => ({ week, key: week.toISOString() }))
+  ), [firstDate, numWeeks]);
 
   return (
     <Styled.Main>
