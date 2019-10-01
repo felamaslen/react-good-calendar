@@ -1,5 +1,4 @@
 import React, { useContext, useMemo } from 'react';
-import PropTypes from 'prop-types';
 import compose from 'just-compose';
 import startOfWeek from 'date-fns/startOfWeek';
 import endOfWeek from 'date-fns/endOfWeek';
@@ -26,7 +25,7 @@ const getLastDate = compose(
   withWeekStart(endOfWeek),
 );
 
-export default function ViewMonth({ }) {
+export default function ViewMonth() {
   const { date } = useContext(StateContext);
 
   const firstDate = useMemo(() => getFirstDate(date), [date]);
@@ -48,6 +47,3 @@ export default function ViewMonth({ }) {
     </Styled.Main>
   );
 }
-
-ViewMonth.propTypes = {
-};
