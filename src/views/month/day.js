@@ -1,19 +1,25 @@
-import React, { useMemo } from 'react';
+import React, { memo } from 'react';
 import PropTypes from 'prop-types';
 import getDate from 'date-fns/getDate';
 
 import * as Styled from './styles';
 
-export default function Day({ day }) {
-  const title = useMemo(() => getDate(day), [day]);
-
-  return (
-    <Styled.Day>
-      <Styled.DayTitle>{title}</Styled.DayTitle>
-    </Styled.Day>
-  );
-}
+const Day = ({
+  day,
+  isToday,
+  isPast,
+  isFuture,
+}) => (
+  <Styled.Day isToday={isToday} isPast={isPast} isFuture={isFuture}>
+    <Styled.DayTitle>{getDate(day)}</Styled.DayTitle>
+  </Styled.Day>
+);
 
 Day.propTypes = {
   day: PropTypes.instanceOf(Date).isRequired,
+  isToday: PropTypes.bool.isRequired,
+  isPast: PropTypes.bool.isRequired,
+  isFuture: PropTypes.bool.isRequired,
 };
+
+export default memo(Day);

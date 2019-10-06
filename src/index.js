@@ -1,7 +1,9 @@
 import React, {
+  useRef,
   useReducer,
   useMemo,
   useCallback,
+  useEffect,
 } from 'react';
 import PropTypes from 'prop-types';
 import { ThemeProvider } from 'styled-components';
@@ -11,6 +13,7 @@ import {
 } from './context';
 import reducer, {
   NAVIGATED,
+  NOW_SET,
   initialState,
 } from './reducer';
 import * as Styled from './styles';
@@ -30,6 +33,13 @@ export default function ReactGoodCalendar({
 
   const navigateNext = useCallback(() => dispatch({ type: NAVIGATED, direction: 1 }), []);
   const navigatePrev = useCallback(() => dispatch({ type: NAVIGATED, direction: -1 }), []);
+
+  const nowTimer = useRef();
+  useEffect(() => {
+    nowTimer.current = setInterval(() => dispatch({ type: NOW_SET }), 5000);
+
+    return () => clearInterval(nowTimer.current);
+  }, []);
 
   return (
     <StateContext.Provider value={state}>

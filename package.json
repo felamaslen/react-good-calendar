@@ -62,6 +62,7 @@
   ],
   "dependencies": {
     "date-fns": "^2.4.1",
-    "just-compose": "^1.1.0"
+    "just-compose": "^1.1.0",
+    "memoize-one": "^5.1.1"
   }
 }

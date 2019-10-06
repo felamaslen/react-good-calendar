@@ -1,14 +1,14 @@
-import React, { useContext } from 'react';
+import React, { memo, useContext } from 'react';
 import PropTypes from 'prop-types';
 import format from 'date-fns/format';
 
 import { StateContext } from '../context';
 import * as Styled from './styles';
 
-export default function Toolbar({
+const Toolbar = ({
   navigateNext,
   navigatePrev,
-}) {
+}) => {
   const { date } = useContext(StateContext);
 
   return (
@@ -18,9 +18,11 @@ export default function Toolbar({
       <Styled.Button onClick={navigateNext}>&gt;</Styled.Button>
     </Styled.Toolbar>
   );
-}
+};
 
 Toolbar.propTypes = {
   navigateNext: PropTypes.func.isRequired,
   navigatePrev: PropTypes.func.isRequired,
 };
+
+export default memo(Toolbar);
