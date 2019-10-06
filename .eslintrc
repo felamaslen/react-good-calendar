@@ -1,0 +1,23 @@
+{
+  "parser": "babel-eslint",
+  "extends": [
+    "airbnb"
+  ],
+  "env": {
+    "browser": true,
+    "es6": true
+  },
+  "plugins": [
+    "react",
+  ],
+  "parserOptions": {
+    "sourceType": "module"
+  },
+  "rules": {
+    "comma-dangle": 0,
+    "import/prefer-default-export": 0,
+    "space-before-function-paren": 0,
+    "react/jsx-boolean-value": 0,
+    "react/jsx-filename-extension": 0
+  }
+}

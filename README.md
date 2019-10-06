@@ -1,19 +1,39 @@
 # react-good-calendar
 
-A React component for rendering a customisable calendar.
+> React Calendar component
 
-## Architecture
+[![NPM](https://img.shields.io/npm/v/react-good-calendar.svg)](https://www.npmjs.com/package/react-good-calendar) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
-React app.
+## Install
 
-The `date-fns` package is used for date manipulation.
+```bash
+npm install --save react-good-calendar
+```
+
+## Usage
+
+```jsx
+import React from 'react'
+
+import Calendar from 'react-good-calendar'
+
+function Example() {
+  return (
+    <Calendar />
+  );
+}
+```
 
 ## Development
 
-To run a development server:
+In one tab, run the rollup watcher:
 
-`npm start`
+- `npm start`
 
-This project was bootstrapped with `create-react-app`, so all the `react-scripts` features are available.
+In another tab, run the create-react-app development server:
 
-TODO: package this up as an npm package and publish it.
+- `cd example && npm start`
+
+## License
+
+MIT © [felamaslen](https://github.com/felamaslen)

@@ -13,7 +13,7 @@ import Week from './week';
 
 const weekStartsOn = 0;
 
-const withWeekStart = fn => date => fn(date, { weekStartsOn });
+const withWeekStart = (fn) => (date) => fn(date, { weekStartsOn });
 
 const getFirstDate = compose(
   startOfMonth,
@@ -36,7 +36,7 @@ export default function ViewMonth() {
   const weeks = useMemo(() => (
     new Array(numWeeks).fill(0)
       .map((item, index) => addWeeks(firstDate, index))
-      .map(week => ({ week, key: week.toISOString() }))
+      .map((week) => ({ week, key: week.toISOString() }))
   ), [firstDate, numWeeks]);
 
   return (

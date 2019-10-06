@@ -1,12 +1,44 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
+import React, {
+  useReducer,
+  useMemo,
+} from 'react';
+import PropTypes from 'prop-types';
+import { ThemeProvider } from 'styled-components';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+import {
+  StateContext,
+} from './context';
+import reducer, { initialState } from './reducer';
+import * as Styled from './styles';
+import baseTheme from './theme';
+import ViewMonth from './views/month';
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
+export default function ReactGoodCalendar({
+  theme,
+}) {
+  const [state, dispatch] = useReducer(reducer, initialState);
+  const fullTheme = useMemo(() => ({
+    ...baseTheme,
+    ...theme,
+  }), [theme]);
+
+  return (
+    <StateContext.Provider value={state}>
+      <ThemeProvider theme={fullTheme}>
+        <Styled.Container>
+          <ViewMonth />
+        </Styled.Container>
+      </ThemeProvider>
+    </StateContext.Provider>
+  );
+}
+
+ReactGoodCalendar.propTypes = {
+  theme: PropTypes.shape({
+    weekHeight: PropTypes.number,
+  }),
+};
+
+ReactGoodCalendar.defaultProps = {
+  theme: {},
+};

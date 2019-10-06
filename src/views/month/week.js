@@ -9,7 +9,7 @@ export default function Week({ week }) {
   const days = useMemo(() => (
     new Array(7).fill(0)
       .map((item, index) => addDays(week, index))
-      .map(day => ({ day, key: day.toISOString() }))
+      .map((day) => ({ day, key: day.toISOString() }))
   ), [week]);
 
   return (

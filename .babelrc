@@ -1,5 +1,9 @@
 {
   "presets": [
-    ["@babel/preset-react"]
-  ],
+    ["env", {
+      "modules": false
+    }],
+    "stage-0",
+    "react"
+  ]
 }
