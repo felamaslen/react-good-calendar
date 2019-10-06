@@ -6,10 +6,11 @@
   "private": true,
   "dependencies": {
     "prop-types": "^15.6.2",
-    "react": "^16.10.2",
-    "react-dom": "^16.10.2",
+    "react": "file:../node_modules/react",
+    "react-dom": "file:../node_modules/react-dom",
     "react-good-calendar": "file:..",
-    "react-scripts": "^3.2.0"
+    "react-scripts": "^3.2.0",
+    "styled-components": "file:../node_modules/styled-components"
   },
   "scripts": {
     "start": "react-scripts start",
