@@ -10,6 +10,21 @@ height: 100%;
 border: 1px solid ${({ theme: { borderColor } }) => borderColor};
 `;
 
+export const Header = styled.div`
+display: flex;
+align-items: center;
+height: ${rem(32)};
+border-bottom: 1px solid ${({ theme: { borderColor } }) => borderColor};
+`;
+
+export const DayOfWeek = styled.div`
+flex: 1;
+text-transform: capitalize;
+text-align: center;
+font-size: ${rem(16)};
+font-weight: bold;
+`;
+
 export const Week = styled.div`
 display: flex;
 flex: 0 0 ${({ theme: { weekHeight } }) => rem(weekHeight)};

@@ -6,6 +6,8 @@ import startOfMonth from 'date-fns/startOfMonth';
 import endOfMonth from 'date-fns/endOfMonth';
 import differenceInWeeks from 'date-fns/differenceInWeeks';
 import addWeeks from 'date-fns/addWeeks';
+import addDays from 'date-fns/addDays';
+import format from 'date-fns/format';
 
 import { StateContext } from '../../context';
 import * as Styled from './styles';
@@ -41,6 +43,13 @@ export default function ViewMonth() {
 
   return (
     <Styled.Main>
+      <Styled.Header>
+        {new Array(7).fill(0)
+          .map((item, index) => format(addDays(firstDate, index), 'eee'))
+          .map((day) => (
+            <Styled.DayOfWeek key={day}>{day}</Styled.DayOfWeek>
+          ))}
+      </Styled.Header>
       {weeks.map(({ key, week }) => (
         <Week key={key} week={week} />
       ))}
