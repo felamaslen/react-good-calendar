@@ -1,4 +1,10 @@
-import React, { useState, useCallback } from 'react';
+import React, {
+  useRef,
+  useState,
+  useCallback,
+  useEffect,
+} from 'react';
+import PropTypes from 'prop-types';
 import Calendar from 'react-good-calendar';
 import styled from 'styled-components';
 
@@ -12,6 +18,36 @@ const theme = {
   // eventFontSize: 14,
   // eventMargin: 2,
   // eventPadding: 4,
+};
+
+function MyToolbar({ children }) {
+  const colors = ['#ff0000', '#ff7f00', '#ffff00', '#00ff00', '#0000ff', '#4b0082', '#8b00ff'];
+  const [color, setColor] = useState(colors[0]);
+
+  const timer = useRef();
+  useEffect(() => {
+    timer.current = setTimeout(() => {
+      setColor((last) => colors[(colors.indexOf(last) + 1) % colors.length]);
+    }, 500);
+
+    return () => {
+      clearTimeout(timer.current);
+    };
+  }, [color]);
+
+  return (
+    <div style={{ color }}>
+      {children}
+    </div>
+  );
+}
+
+MyToolbar.propTypes = {
+  children: PropTypes.node.isRequired,
+};
+
+const components = {
+  Toolbar: MyToolbar,
 };
 
 const events = [
@@ -66,6 +102,7 @@ export default function App() {
       <ExampleContainer>
         <Calendar
           theme={theme}
+          components={components}
           events={events}
           onNewEvent={onNewEvent}
           onEditEvent={onEditEvent}
