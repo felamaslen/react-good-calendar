@@ -68,6 +68,7 @@ export const Day = styled.div`
   flex-flow: column;
   flex: 1;
   position: relative;
+  cursor: pointer;
 
   ${DayEvent} {
     z-index: 2;
@@ -78,10 +79,15 @@ export const Day = styled.div`
       border-right: 1px solid ${({ theme: { borderColor } }) => borderColor};
     }
   }
+
+  &:hover {
+    background: ${({ theme: { hoverColor } }) => hoverColor};
+  }
 `;
 
 export const DayTitle = styled.h3`
   margin: ${rem(3)} ${({ theme: { eventMargin } }) => rem(eventMargin)};
   font-size: ${rem(12)};
   text-align: left;
+  z-index: 2;
 `;

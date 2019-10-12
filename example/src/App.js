@@ -5,6 +5,7 @@ import styled from 'styled-components';
 const theme = {
   // weekHeight: 128,
   // borderColor: 'rgb(220, 220, 220)',
+  // hoverColor: 'rgb(240, 240, 240)',
   // eventFontSize: 14,
   // eventMargin: 2,
   // eventPadding: 8,
