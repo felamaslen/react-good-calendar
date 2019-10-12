@@ -10,6 +10,7 @@ import { ThemeProvider } from 'styled-components';
 
 import {
   StateContext,
+  ComponentsContext,
   EventsContext,
 } from './context';
 import reducer, {
@@ -19,6 +20,7 @@ import reducer, {
 } from './reducer';
 import * as Styled from './styles';
 import baseTheme from './theme';
+import baseComponents from './components';
 import { eventShape } from './modules/types';
 
 import Toolbar from './toolbar';
@@ -26,6 +28,7 @@ import ViewMonth from './views/month';
 
 export default function ReactGoodCalendar({
   theme,
+  components,
   events,
   onNewEvent,
   onEditEvent,
@@ -35,6 +38,11 @@ export default function ReactGoodCalendar({
     ...baseTheme,
     ...theme,
   }), [theme]);
+
+  const fullComponents = useMemo(() => ({
+    ...baseComponents,
+    ...components,
+  }), [components]);
 
   const navigateNext = useCallback(() => dispatch({ type: NAVIGATED, direction: 1 }), []);
   const navigatePrev = useCallback(() => dispatch({ type: NAVIGATED, direction: -1 }), []);
@@ -49,18 +57,20 @@ export default function ReactGoodCalendar({
   return (
     <StateContext.Provider value={state}>
       <ThemeProvider theme={fullTheme}>
-        <Styled.Container>
-          <Toolbar
-            navigateNext={navigateNext}
-            navigatePrev={navigatePrev}
-          />
-          <EventsContext.Provider value={events}>
-            <ViewMonth
-              onNewEvent={onNewEvent}
-              onEditEvent={onEditEvent}
+        <ComponentsContext.Provider value={fullComponents}>
+          <Styled.Container>
+            <Toolbar
+              navigateNext={navigateNext}
+              navigatePrev={navigatePrev}
             />
-          </EventsContext.Provider>
-        </Styled.Container>
+            <EventsContext.Provider value={events}>
+              <ViewMonth
+                onNewEvent={onNewEvent}
+                onEditEvent={onEditEvent}
+              />
+            </EventsContext.Provider>
+          </Styled.Container>
+        </ComponentsContext.Provider>
       </ThemeProvider>
     </StateContext.Provider>
   );
@@ -70,6 +80,9 @@ ReactGoodCalendar.propTypes = {
   theme: PropTypes.shape({
     weekHeight: PropTypes.number,
   }),
+  components: PropTypes.shape({
+    Toolbar: PropTypes.func,
+  }),
   events: PropTypes.arrayOf(eventShape.isRequired),
   onNewEvent: PropTypes.func,
   onEditEvent: PropTypes.func,
@@ -77,6 +90,7 @@ ReactGoodCalendar.propTypes = {
 
 ReactGoodCalendar.defaultProps = {
   theme: {},
+  components: {},
   events: [],
   onNewEvent: () => null,
   onEditEvent: () => null,

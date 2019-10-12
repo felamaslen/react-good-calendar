@@ -7,6 +7,7 @@
 * [Events](#events)
   * [Adding](#events-adding)
   * [Editing](#events-editing)
+* [Custom components](#custom-components)
 
 <a name="rendering"/>
 
@@ -85,3 +86,30 @@ The `onNewEvent` prop, if passed, is called whenever clicking a blank space insi
 ### Editing
 
 The `onEditEvent` prop, if passed, is called whenever clicking an event title on the month view. It is called with a single argument: the `event` object which belongs to the clicked title.
+
+<a name="custom-components"/>
+
+## Custom components
+
+You may pass a `components` object to `<Calendar />` as a prop.
+
+These can be simple wrappers (for example, to render certain styles) which render the default component as their children, or they can behave however you like. The list of implemented custom components is as follows:
+
+### Toolbar
+
+#### Name:
+
+`Toolbar`, e.g.:
+
+```jsx
+render(<Calendar components={{ Toolbar: MyCustomToolbar }} />)
+```
+
+#### Props received:
+
+- `date`: (`Date` object) the current date of the calendar
+- `navigateNext`: (`Function`) call this to navigate to the next month
+- `navigatePrev`: (`Function`) call this to navigate to the previous month
+- `children`: the default toolbar
+
+The example in `example/src/App.js` renders a custom toolbar component which switches the colour of the default toolbar every 500ms.
