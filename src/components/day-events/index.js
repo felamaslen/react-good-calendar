@@ -24,11 +24,13 @@ export default function DayEvents({ day, allDay }) {
         id,
         title,
         allDay: eventAllDay,
+        inDay,
         color = 'white',
       }) => (
         <Styled.DayEvent
           key={id}
           allDay={Boolean(allDay || eventAllDay)}
+          inDay={inDay}
           color={color}
         >
           {title}

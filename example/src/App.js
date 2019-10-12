@@ -3,7 +3,10 @@ import Calendar from 'react-good-calendar';
 
 const theme = {
   // weekHeight: 128,
-  eventFontSize: 14,
+  // borderColor: 'rgb(220, 220, 220)',
+  // eventFontSize: 14,
+  // eventMargin: 2,
+  // eventPadding: 8,
 };
 
 const events = [
