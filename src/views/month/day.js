@@ -2,18 +2,22 @@ import React, { memo } from 'react';
 import PropTypes from 'prop-types';
 import getDate from 'date-fns/getDate';
 
+import DayEvents from '../../components/day-events';
 import * as Styled from './styles';
 
-const Day = ({
+function Day({
   day,
   isToday,
   isPast,
   isFuture,
-}) => (
-  <Styled.Day isToday={isToday} isPast={isPast} isFuture={isFuture}>
-    <Styled.DayTitle>{getDate(day)}</Styled.DayTitle>
-  </Styled.Day>
-);
+}) {
+  return (
+    <Styled.Day isToday={isToday} isPast={isPast} isFuture={isFuture}>
+      <Styled.DayTitle>{getDate(day)}</Styled.DayTitle>
+      <DayEvents day={day} allDay />
+    </Styled.Day>
+  );
+}
 
 Day.propTypes = {
   day: PropTypes.instanceOf(Date).isRequired,

@@ -10,6 +10,7 @@ import { ThemeProvider } from 'styled-components';
 
 import {
   StateContext,
+  EventsContext,
 } from './context';
 import reducer, {
   NAVIGATED,
@@ -18,12 +19,14 @@ import reducer, {
 } from './reducer';
 import * as Styled from './styles';
 import baseTheme from './theme';
+import { eventShape } from './modules/types';
 
 import Toolbar from './toolbar';
 import ViewMonth from './views/month';
 
 export default function ReactGoodCalendar({
   theme,
+  events,
 }) {
   const [state, dispatch] = useReducer(reducer, initialState);
   const fullTheme = useMemo(() => ({
@@ -49,7 +52,9 @@ export default function ReactGoodCalendar({
             navigateNext={navigateNext}
             navigatePrev={navigatePrev}
           />
-          <ViewMonth />
+          <EventsContext.Provider value={events}>
+            <ViewMonth />
+          </EventsContext.Provider>
         </Styled.Container>
       </ThemeProvider>
     </StateContext.Provider>
@@ -60,8 +65,10 @@ ReactGoodCalendar.propTypes = {
   theme: PropTypes.shape({
     weekHeight: PropTypes.number,
   }),
+  events: PropTypes.arrayOf(eventShape.isRequired),
 };
 
 ReactGoodCalendar.defaultProps = {
   theme: {},
+  events: [],
 };
