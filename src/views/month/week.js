@@ -11,6 +11,8 @@ export default function Week({
   today,
   firstDate,
   lastDate,
+  onNewEvent,
+  onEditEvent,
 }) {
   const days = useMemo(() => (
     new Array(7).fill(0)
@@ -27,6 +29,8 @@ export default function Week({
           isToday={isSameDay(day, today)}
           isPast={day < firstDate}
           isFuture={day > lastDate}
+          onNewEvent={onNewEvent}
+          onEditEvent={onEditEvent}
         />
       ))}
     </Styled.Week>
@@ -38,4 +42,6 @@ Week.propTypes = {
   today: PropTypes.instanceOf(Date).isRequired,
   firstDate: PropTypes.instanceOf(Date).isRequired,
   lastDate: PropTypes.instanceOf(Date).isRequired,
+  onNewEvent: PropTypes.func.isRequired,
+  onEditEvent: PropTypes.func.isRequired,
 };

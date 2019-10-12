@@ -1,4 +1,4 @@
-import React, { memo } from 'react';
+import React, { memo, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import getDate from 'date-fns/getDate';
 
@@ -10,12 +10,25 @@ function Day({
   isToday,
   isPast,
   isFuture,
+  onNewEvent,
+  onEditEvent,
 }) {
+  const onClick = useCallback(() => onNewEvent(day), [day, onNewEvent]);
+
   return (
-    <Styled.Day isToday={isToday} isPast={isPast} isFuture={isFuture}>
+    <Styled.Day
+      isToday={isToday}
+      isPast={isPast}
+      isFuture={isFuture}
+      onClick={onClick}
+    >
       <Styled.DayBackground />
       <Styled.DayTitle>{getDate(day)}</Styled.DayTitle>
-      <DayEvents day={day} allDay />
+      <DayEvents
+        day={day}
+        allDay
+        onEditEvent={onEditEvent}
+      />
     </Styled.Day>
   );
 }
@@ -25,6 +38,8 @@ Day.propTypes = {
   isToday: PropTypes.bool.isRequired,
   isPast: PropTypes.bool.isRequired,
   isFuture: PropTypes.bool.isRequired,
+  onNewEvent: PropTypes.func.isRequired,
+  onEditEvent: PropTypes.func.isRequired,
 };
 
 export default memo(Day);

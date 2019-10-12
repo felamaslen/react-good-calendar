@@ -1,12 +1,43 @@
-import React, { useContext, useMemo } from 'react';
+import React, { useContext, useCallback, useMemo } from 'react';
 import PropTypes from 'prop-types';
 
 import { EventsContext } from '../../context';
 import { eventInDay } from '../../modules/time';
+import { eventShape } from '../../modules/types';
 
 import * as Styled from './styles';
 
-export default function DayEvents({ day, allDay }) {
+function DayEvent({
+  allDay,
+  inDay,
+  event,
+  onEditEvent,
+}) {
+  const onClick = useCallback((clickEvent) => {
+    clickEvent.stopPropagation();
+    onEditEvent(event);
+  }, [event, onEditEvent]);
+
+  return (
+    <Styled.DayEvent
+      allDay={Boolean(allDay || event.allDay)}
+      inDay={inDay}
+      color={event.color}
+      onClick={onClick}
+    >
+      {event.title}
+    </Styled.DayEvent>
+  );
+}
+
+DayEvent.propTypes = {
+  allDay: PropTypes.bool.isRequired,
+  inDay: PropTypes.number.isRequired,
+  event: eventShape.isRequired,
+  onEditEvent: PropTypes.func.isRequired,
+};
+
+export default function DayEvents({ day, allDay, onEditEvent }) {
   const events = useContext(EventsContext);
 
   const dayEvents = useMemo(() => (
@@ -20,21 +51,14 @@ export default function DayEvents({ day, allDay }) {
 
   return (
     <>
-      {dayEvents.map(({
-        id,
-        title,
-        allDay: eventAllDay,
-        inDay,
-        color = 'white',
-      }) => (
-        <Styled.DayEvent
-          key={id}
-          allDay={Boolean(allDay || eventAllDay)}
+      {dayEvents.map(({ inDay, ...event }) => (
+        <DayEvent
+          key={event.id}
+          allDay={allDay}
           inDay={inDay}
-          color={color}
-        >
-          {title}
-        </Styled.DayEvent>
+          event={event}
+          onEditEvent={onEditEvent}
+        />
       ))}
     </>
   );
@@ -43,6 +67,7 @@ export default function DayEvents({ day, allDay }) {
 DayEvents.propTypes = {
   day: PropTypes.instanceOf(Date).isRequired,
   allDay: PropTypes.bool,
+  onEditEvent: PropTypes.func.isRequired,
 };
 
 DayEvents.defaultProps = {

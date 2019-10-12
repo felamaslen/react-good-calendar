@@ -36,6 +36,8 @@ const Weeks = memo(({
   lastDate,
   viewFirstDate,
   viewLastDate,
+  onNewEvent,
+  onEditEvent,
 }) => (
   <>
     {new Array(1 + differenceInWeeks(lastDate, firstDate)).fill(0)
@@ -48,6 +50,8 @@ const Weeks = memo(({
           today={today}
           firstDate={viewFirstDate}
           lastDate={viewLastDate}
+          onNewEvent={onNewEvent}
+          onEditEvent={onEditEvent}
         />
       ))}
   </>
@@ -59,13 +63,18 @@ Weeks.propTypes = {
   lastDate: PropTypes.instanceOf(Date).isRequired,
   viewFirstDate: PropTypes.instanceOf(Date).isRequired,
   viewLastDate: PropTypes.instanceOf(Date).isRequired,
+  onNewEvent: PropTypes.func.isRequired,
+  onEditEvent: PropTypes.func.isRequired,
 };
 
 const getToday = memoize(startOfDay, ([prev], [next]) => (
   startOfDay(prev).toISOString() === startOfDay(next).toISOString()
 ));
 
-const ViewMonth = memo(() => {
+const ViewMonth = memo(({
+  onNewEvent,
+  onEditEvent,
+}) => {
   const { date, now } = useContext(StateContext);
 
   const firstDate = useMemo(() => getFirstDate(date), [date]);
@@ -91,9 +100,16 @@ const ViewMonth = memo(() => {
         lastDate={lastDate}
         viewFirstDate={viewFirstDate}
         viewLastDate={viewLastDate}
+        onNewEvent={onNewEvent}
+        onEditEvent={onEditEvent}
       />
     </Styled.Main>
   );
 });
+
+ViewMonth.propTypes = {
+  onNewEvent: PropTypes.func.isRequired,
+  onEditEvent: PropTypes.func.isRequired,
+};
 
 export default ViewMonth;

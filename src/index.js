@@ -27,6 +27,8 @@ import ViewMonth from './views/month';
 export default function ReactGoodCalendar({
   theme,
   events,
+  onNewEvent,
+  onEditEvent,
 }) {
   const [state, dispatch] = useReducer(reducer, initialState);
   const fullTheme = useMemo(() => ({
@@ -53,7 +55,10 @@ export default function ReactGoodCalendar({
             navigatePrev={navigatePrev}
           />
           <EventsContext.Provider value={events}>
-            <ViewMonth />
+            <ViewMonth
+              onNewEvent={onNewEvent}
+              onEditEvent={onEditEvent}
+            />
           </EventsContext.Provider>
         </Styled.Container>
       </ThemeProvider>
@@ -66,9 +71,13 @@ ReactGoodCalendar.propTypes = {
     weekHeight: PropTypes.number,
   }),
   events: PropTypes.arrayOf(eventShape.isRequired),
+  onNewEvent: PropTypes.func,
+  onEditEvent: PropTypes.func,
 };
 
 ReactGoodCalendar.defaultProps = {
   theme: {},
   events: [],
+  onNewEvent: () => null,
+  onEditEvent: () => null,
 };
