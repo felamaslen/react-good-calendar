@@ -1,18 +1,18 @@
 {
   "files": {
-    "main.js": "/react-good-calendar/static/js/main.b1363d90.chunk.js",
-    "main.js.map": "/react-good-calendar/static/js/main.b1363d90.chunk.js.map",
+    "main.js": "/react-good-calendar/static/js/main.7f255f56.chunk.js",
+    "main.js.map": "/react-good-calendar/static/js/main.7f255f56.chunk.js.map",
     "runtime-main.js": "/react-good-calendar/static/js/runtime-main.4465341a.js",
     "runtime-main.js.map": "/react-good-calendar/static/js/runtime-main.4465341a.js.map",
-    "static/js/2.3fdc5d89.chunk.js": "/react-good-calendar/static/js/2.3fdc5d89.chunk.js",
-    "static/js/2.3fdc5d89.chunk.js.map": "/react-good-calendar/static/js/2.3fdc5d89.chunk.js.map",
+    "static/js/2.fc4717f2.chunk.js": "/react-good-calendar/static/js/2.fc4717f2.chunk.js",
+    "static/js/2.fc4717f2.chunk.js.map": "/react-good-calendar/static/js/2.fc4717f2.chunk.js.map",
     "index.html": "/react-good-calendar/index.html",
-    "precache-manifest.fafa9e220c24f50924229f8f6d311b6a.js": "/react-good-calendar/precache-manifest.fafa9e220c24f50924229f8f6d311b6a.js",
+    "precache-manifest.d6b71d102b8f9d4b01cddf4db82ccc33.js": "/react-good-calendar/precache-manifest.d6b71d102b8f9d4b01cddf4db82ccc33.js",
     "service-worker.js": "/react-good-calendar/service-worker.js"
   },
   "entrypoints": [
     "static/js/runtime-main.4465341a.js",
-    "static/js/2.3fdc5d89.chunk.js",
-    "static/js/main.b1363d90.chunk.js"
+    "static/js/2.fc4717f2.chunk.js",
+    "static/js/main.7f255f56.chunk.js"
   ]
 }
