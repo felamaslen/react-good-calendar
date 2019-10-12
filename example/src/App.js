@@ -20,8 +20,9 @@ const theme = {
   // eventPadding: 4,
 };
 
+const colors = ['#ff0000', '#ff7f00', '#ffff00', '#00ff00', '#0000ff', '#4b0082', '#8b00ff'];
+
 function MyToolbar({ children }) {
-  const colors = ['#ff0000', '#ff7f00', '#ffff00', '#00ff00', '#0000ff', '#4b0082', '#8b00ff'];
   const [color, setColor] = useState(colors[0]);
 
   const timer = useRef();
