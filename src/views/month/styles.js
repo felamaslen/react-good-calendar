@@ -42,11 +42,12 @@ export const DayBackground = styled.div`
   left: 0;
   top: 0;
   z-index: 1;
+  box-sizing: border-box;
   background: ${({
     theme: {
-      inactiveColor = '#eee',
-      todayColor = '#eef',
-      activeColor = 'none',
+      inactiveColor,
+      todayColor,
+      activeColor,
     },
     isPast,
     isFuture,
@@ -81,7 +82,9 @@ export const Day = styled.div`
   }
 
   &:hover {
-    background: ${({ theme: { hoverColor } }) => hoverColor};
+    ${DayBackground} {
+      background: ${({ theme: { hoverColor } }) => hoverColor};
+    }
   }
 `;
 

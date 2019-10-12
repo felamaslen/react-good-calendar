@@ -17,12 +17,13 @@ function Day({
 
   return (
     <Styled.Day
-      isToday={isToday}
-      isPast={isPast}
-      isFuture={isFuture}
       onClick={onClick}
     >
-      <Styled.DayBackground />
+      <Styled.DayBackground
+        isToday={isToday}
+        isPast={isPast}
+        isFuture={isFuture}
+      />
       <Styled.DayTitle>{getDate(day)}</Styled.DayTitle>
       <DayEvents
         day={day}
