@@ -2,6 +2,8 @@ import styled from 'styled-components';
 
 import { rem } from '../../mixins';
 
+import { DayEvent } from '../../components/day-events/styles';
+
 export const Main = styled.div`
   display: flex;
   flex-flow: column;
@@ -33,15 +35,13 @@ export const Week = styled.div`
   }
 `;
 
-export const Day = styled.div`
-  display: flex;
-  flex-flow: column;
-  flex: 1;
-  position: relative;
-  :not(:last-child) {
-    border-right: 1px solid ${({ theme: { borderColor } }) => borderColor};
-  }
-
+export const DayBackground = styled.div`
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  z-index: 1;
   background: ${({
     theme: {
       inactiveColor = '#eee',
@@ -61,6 +61,23 @@ export const Day = styled.div`
 
     return activeColor;
   }};
+`;
+
+export const Day = styled.div`
+  display: flex;
+  flex-flow: column;
+  flex: 1;
+  position: relative;
+
+  ${DayEvent} {
+    z-index: 2;
+  }
+
+  :not(:last-child) {
+    ${DayBackground} {
+      border-right: 1px solid ${({ theme: { borderColor } }) => borderColor};
+    }
+  }
 `;
 
 export const DayTitle = styled.h3`

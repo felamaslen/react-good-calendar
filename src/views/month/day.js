@@ -13,6 +13,7 @@ function Day({
 }) {
   return (
     <Styled.Day isToday={isToday} isPast={isPast} isFuture={isFuture}>
+      <Styled.DayBackground />
       <Styled.DayTitle>{getDate(day)}</Styled.DayTitle>
       <DayEvents day={day} allDay />
     </Styled.Day>
