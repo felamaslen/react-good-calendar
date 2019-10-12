@@ -81,7 +81,7 @@ export const Day = styled.div`
 `;
 
 export const DayTitle = styled.h3`
-  margin: ${rem(3)} 0;
+  margin: ${rem(3)} ${({ theme: { eventMargin } }) => rem(eventMargin)};
   font-size: ${rem(12)};
   text-align: left;
 `;
