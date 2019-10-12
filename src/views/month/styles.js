@@ -42,7 +42,6 @@ export const DayBackground = styled.div`
   left: 0;
   top: 0;
   z-index: 1;
-  box-sizing: border-box;
   background: ${({
     theme: {
       inactiveColor,

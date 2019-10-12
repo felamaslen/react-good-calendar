@@ -11,7 +11,6 @@ const getEventHeight = (offset = 0) => ({ theme: { eventFontSize } }) => (
 export const DayEvent = styled.h3`
   margin: 0 0 ${({ theme: { eventMargin } }) => rem(eventMargin)};
   padding: 0 ${({ theme: { eventPadding } }) => rem(eventPadding)};
-  box-sizing: border-box;
   height: ${getEventHeight(0.5)};
   line-height: ${getEventHeight(0.8)};
   font-size: ${getEventHeight()};
